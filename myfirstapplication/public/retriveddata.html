@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <style>
+
+   </style>
+   <script>
+        var option=['flipcard', 'amazone', 'blink', 'meesho'];
+        function bodyload(){
+            option.map(function(item){
+                var options=document.createElement("option");
+                options.values=item;
+                options.text=item;
+                document.querySelector("select").appendChild(options);
+
+                var list=document.createElement("li");
+                list.innerHTML=item;
+                document.querySelector("ul").appendChild(list);
+
+                var bt = document.createElement("button");               
+                bt.innerHTML=item;
+                bt.style.display="block"
+                bt.style.marginTop="30px"
+                bt.className="btn btn-primery w-50"
+                document.getElementById("button").appendChild(bt);
+            })
+        }
+
+        // document.write(typeof(option))
+    </script>
+</head>
+<body onload="bodyload()">
+    <br>
+    <hr class="table-danger">
+    <div class="row">
+        <div class="col-4" >
+        <select>
+            <option value="-1">--Select category--</option>
+        </select>
+        </div>
+
+        <div class="col-4" >
+        <h5>category</h5>
+        <ul></ul>
+        </div>
+       <div  class="col-4">
+        <div id="button">            
+        </div>
+       </div>
+        
+
+        <!-- <div class=" w-25 col-3" id="button1">            
+        </div> -->
+        
+</div>
+</body>
+</html>

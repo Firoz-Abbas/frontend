@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <script>
+       function bodyload()
+       {
+        fetch('https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=DEMO_KEY')
+        .then(function(response){return response.json();})
+        // .then(function(res){
+        //     return res.json();
+        // })
+        .then(function(data){
+            data.photos.map(function(item){
+            var tr = document.createElement("tr");
+            var td1= document.createElement("td");
+            var td2= document.createElement("td");
+            var td3= document.createElement("td");
+            var td4= document.createElement("td");
+            var td5= document.createElement("td");
+            var td6= document.createElement("td");
+
+            td1.innerHTML=item.id;
+            td2.innerHTML=`<a href="${item.img_src}" targat="_blank"><img src="${item.img_src}" height=50px width="100px"> </a>`;
+            td3.innerHTML=item.camera.full_name;
+            td4.innerHTML=item.rover.landing_date;
+            td5.innerHTML=item.rover.launch_date;
+            td6.innerHTML = '<button class="btn btn-danger" onclick="btnDeleteClick(${item.id})">Delete</button>';
+
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tr.appendChild(td3);
+            tr.appendChild(td4);
+            tr.appendChild(td5);
+            tr.appendChild(td6);
+
+            document.querySelector("tbody").appendChild(tr);
+
+            })
+        })
+       }
+       function btnDeleteClick(){
+        fetch('https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=DEMO_KEY')
+       }
+    </script>
+</head>
+<body onload="bodyload()">
+    <table class="table table-hover border border-2 w-100" style="margin:auto">
+        <thead class="table-danger">            
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Photo</th>
+            <th scope="col">Camera Full Name</th>   
+            <th scope="col">Landing Date</th>
+            <th scope="col">Lanching Date</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+                   
+        </tbody>
+      </table>
+</body>
+</html>
