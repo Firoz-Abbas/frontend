@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>appoinment</title>
+    <script>
+        var Appointment=[];
+        function loadTask(){
+            document.getElementById("firsttask").innerHTML = "";
+            document.getElementById("optionid").innerHTML = "";
+
+            Appointment.map(function(item){
+                var li=document.createElement("li");
+                li.innerHTML=item;            
+                document.getElementById("firsttask").appendChild(li);
+                
+                var option=document.createElement("option");
+                option.text=item;   
+                option.value=item;
+                document.getElementById("optionid").appendChild(option);
+            })
+        }
+
+        function delClick(){
+            var cityName =  document.getElementById("optionid").value;           
+            var cityIndex = Appointment.indexOf(cityName);
+            var flag = confirm(`Are you sure?\nWant to delete ${cityName} - ${cityIndex}`);
+            if(flag==true)
+            {
+                Appointment.splice(cityIndex,1)
+                loadTask()
+            }
+         }
+
+         function DeleteClick(){
+            var cityName =  document.getElementById("firsttask").l.value;           
+            var cityIndex = Appointment.indexOf(cityName);
+            var flag = confirm(`Are you sure?\nWant to delete ${cityName} `);
+            if(flag==true)
+            {
+                Appointment.splice(cityIndex,1)
+                loadTask()
+            }
+         }
+
+    
+
+
+        function AddClick(){
+            var titleopp=document.getElementById("textid").value;
+            var datetext=document.getElementById("dateid").value;
+            var appoinment=`${titleopp}-${datetext} <button class="btn btn-primary" onclick="DeleteClick()">Delete</button>`;
+            // var list=document.createElement("li");
+            // list.innerHTML=appoinment;
+            alert(`Want to add? oppointment- ${titleopp}`)
+            // document.querySelector("ul").appendChild(list)
+            Appointment.push(appoinment);
+            loadTask();
+        }
+    </script>
+     <style>
+        ul{
+            list-style: none;            
+        }
+        li{
+            background-color: gray;
+            color: white;
+            margin-bottom: 5px;
+            width: 40%;
+            display: flex;
+            padding: 2px;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body onload="loadTask()">
+    <h3 class="mt-4 bg-primary p-0 text-white">TO DO</h3>
+    <div class="w-50">
+        <div>
+            <input type="text" id="textid" placeholder="Enter appoinment title">
+            <input  type="date" id="dateid">
+            <button class="btn btn-primary" onclick="AddClick()">Add</button>
+        </div>
+        <div>
+            <ul id="firsttask">
+                
+            </ul>
+        </div>
+        <div>
+            <select id="optionid">
+                
+            </select>
+        </div>
+        <div>            
+            <button class="bi bi-trash-fill btn btn-outline-primary" onclick="delClick()">Delete</button>
+        </div>
+    </div>
+    <i class="bi bi-zoom-in"></i>
+    <i class="bi bi-zoom-out"></i>
+    <button class="bi bi-trash btn btn-outline-danger" >Delete</button>
+    <button class="bi bi-zoom-in btn btn-outline-primary" >Delete</button>
+    <i class="bi bi-calendar-date"></i>
+    <input type="text" class="form-control  pickadate-selectors"></input>
+</body>
+</html>

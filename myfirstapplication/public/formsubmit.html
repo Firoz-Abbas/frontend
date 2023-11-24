@@ -38,7 +38,7 @@
             tr.appendChild(td2);
             tr.appendChild(td3);
 
-            document.querySelector("tbody").appendChild(tr);
+            document.getElementById("tbody").appendChild(tr);
         }
 
     </script>
@@ -46,25 +46,25 @@
 <body class="container mt-4">
     <div class="row">
         <div class="col-6">
-            <form>
+            <!-- <form> -->
                 <div class="mb-3">
-                  <label for="exampleInputStudent" class="form-label">Student Name</label>
-                  <input type="text" class="form-control" id="studentname" aria-describedby="emailHelp">          
+                  <label  class="form-label">Student Name</label>
+                  <input type="text" class="form-control" id="studentname">          
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputadmition" class="form-label">Admission Number</label>
+                  <label  class="form-label"> Admission Number </label>
                   <input type="text" class="form-control" id="Admission">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputclass" class="form-label">Class</label>
+                    <label class="form-label">Class</label>
                     <input type="text" class="form-control" id="classdemo">
                   </div>
                 <div class="mb-3 form-check">
                   <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                  <label class="form-label"> Check me out</label>
                 </div>
-                <button type="submit" class="btn btn-primary"  id="submit" onclick="submitClick()">Submit</button>
-              </form>
+                <button class="btn btn-primary" onclick="submitClick()">Submit</button>
+              <!-- </form> -->
         </div>
         <div class="col-6">            
                 <table class="border border-2 w-100 p-2">
@@ -75,7 +75,7 @@
                     <th width="23%">Class</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="tbody">
 
                 </tbody>
                 </table>

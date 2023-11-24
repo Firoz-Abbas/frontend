@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <title>Store</title>
+    <script>
+    function LoadProduct(id){
+         fetch(`http://fakestoreapi.com/products/${id}`)
+        .then(function(response){
+            return response.json();
+        })
+        .then(function(data){
+            document.getElementById("labelid").innerHTML = data.title;
+            document.getElementById("priceid").innerHTML = data.price;
+            document.getElementById("productimgid").src = data.image;            
+        })
+    }
+
+    var productid =1
+    function changeImg(){
+        LoadProduct(document.getElementById("range").value)
+    }
+
+    function changeImg1(){
+        LoadProduct(document.getElementById("number").value)
+    }
+
+    function traverseAsc(){
+        productid++;
+        LoadProduct(productid)   
+    }
+
+    function traverseDsc(){
+        productid--;
+        LoadProduct(productid)
+    }
+
+    function bodyload(){         
+        LoadProduct(productid)
+    }
+
+    
+    </script>
+    <style>
+        .price{
+            background-color: red;
+            width: 100px;
+            border-radius: 12px;
+            padding: 3px;
+            position:absolute;
+            left: 2px;
+            top: 33px;
+        }
+    </style>
+</head>
+<body onload="bodyload()" class="container flud d-flex justify-content-center">
+    <div class="card w-50 mt-4" >
+        <div class="card-header text-center">
+            <div class="h8" id="labelid"></div>
+        </div>
+        <div class="card-body position-reletive text-center">
+            <div class="bi bi-tag-fill price" id="priceid"></div>
+            <img id="productimgid" alt="" style="height: 300px; width: 300px;">
+        </div>
+        <div class="card-footer text-center">
+            <input type="range" id="range" onchange="changeImg()" min="1" max="20" value="1">
+            <button onclick="traverseDsc()" class="btn btn-primary"><</button>
+            <button onclick="traverseAsc()" class="btn btn-primary">></button>
+            <input type="number" id="number" onchange="changeImg1()" min="1" max="20" value="1">
+        </div>
+    </div>
+
+</body>
+</html>
